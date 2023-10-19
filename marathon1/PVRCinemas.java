@@ -20,29 +20,40 @@ public class PVRCinemas {
 
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 
+		// Click the sandwich(menu) bar
 		driver.findElement(By.xpath("//div[@class='nav-icon']")).click();
+
+		// Click on Movie Library
 		driver.findElement(By.xpath("//li[@class='sidebar-list-item']//a[contains(text(),'Movie Library')]")).click();
 
 		Thread.sleep(5000);
+
+		// Select the City --> Chennai
 		WebElement cityDropdown = driver.findElement(By.name("city"));
 		Select city = new Select(cityDropdown);
 		city.selectByValue("Chennai");
 
+		// Select the Genre-->Animation
 		WebElement genreDropdown = driver.findElement(By.name("genre"));
 		Select genre = new Select(genreDropdown);
 		genre.selectByVisibleText("ANIMATION");
 
+		// Select the Language-->english
 		WebElement languageDropdown = driver.findElement(By.name("lang"));
 		Select language = new Select(languageDropdown);
 		language.selectByVisibleText("ENGLISH");
 
+		// Click on first resulting animation movie
 		driver.findElement(By.xpath("//div[@class='modal-content']//button[@class='btn btn-submit btn-primary']")).click();
 		Thread.sleep(5000);
 		driver.findElement(By.xpath("//div[@class='movie-wrapper ng-star-inserted']/img")).click();
 		Thread.sleep(5000);
+
+		// Click proceed to book
 		driver.findElement(By.xpath("//div[@class='header-info-fixed']//button[contains(text(),'Proceed To Book')]")).click();
 		Thread.sleep(5000);
 
+		// Enter  all  the fields  cinema , Name, date, Prefered show time, no of seats, food and beverages,Email and Mobile
 		WebElement cinemaNameDropdown = driver.findElement(By.xpath("//select[@name='cinemaName']"));
 		Select cinemaName = new Select(cinemaNameDropdown);
 		cinemaName.selectByIndex(3);
@@ -64,13 +75,20 @@ public class PVRCinemas {
 		food.selectByValue("Yes");
 
 		driver.findElement(By.xpath("//input[@name='comment']")).sendKeys("No Thanks!!!");
+
+		// Click on copy to self
 		driver.findElement(By.xpath("//div[@class='form-group col-sm-6']")).click();
 
+		// Click on  Send Request
 		driver.findElement(By.xpath("//button[text()='SEND REQUEST']")).click();
 
+		// Click cancel
 		driver.findElement(By.xpath("(//button[contains(text(),'CANCEL')])[2]")).click();
+
+		// Close the OTP dialog
 		driver.findElement(By.xpath("//button[@aria-label='Close this dialog']")).click();
 
+		// Verify the ttile of the page
 		String title = driver.getTitle();
 		System.out.println("Title of the page : " + title);
 	}
